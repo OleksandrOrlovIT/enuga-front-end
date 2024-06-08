@@ -14,7 +14,8 @@ const Header = () => {
 
                     {/* Middle Section */}
                     <Box display="flex" justifyContent="center" flexGrow={1}>
-                        <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Tests & Rules" /></Button>
+                        <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Rules" /></Button>
+                        <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Tests" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Word Modules" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Books" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Vocabulary" /></Button>
