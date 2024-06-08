@@ -7,8 +7,10 @@ import {ThemeProvider} from "@mui/material";
 import theme from "./materialUI/Theme";
 import EnglishTest from "./english-test/EnglishTest";
 import AllEnglishTests from "./english-test/AllEnglishTests";
+import VocabularyPage from "./vocabulary/VocabularyPage";
 
 function App() {
+
     return (
         <ThemeProvider theme={theme}>
             <BrowserRouter>
@@ -19,6 +21,7 @@ function App() {
                     <Route path="rules/:id" element={<RulePage/>}/>
                     <Route path="english-tests" element={<AllEnglishTests/>}/>
                     <Route path="english-tests/:id" element={<EnglishTest/>}/>
+                    <Route path="vocabulary/:page" element={<VocabularyPage/>}/>
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>

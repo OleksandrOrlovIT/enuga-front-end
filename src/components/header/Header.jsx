@@ -27,7 +27,9 @@ const Header = () => {
                         </Link>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Word Modules" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Books" /></Button>
-                        <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Vocabulary" /></Button>
+                        <Link to={`/vocabulary/1`} style={{ textDecoration: 'none' }}>
+                            <Button color="white" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Vocabulary" /></Button>
+                        </Link>
                     </Box>
 
                     {/* Right Section */}
