@@ -1,14 +1,14 @@
-import Word from "./word/Word";
-import Words from "./word/Words";
 import Header from "./header/Header";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() {
     return (
-        <div className="App">
-            <Header/>
-            <Words text = "Hello World"/>
-            <Word word = "hundred"/>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Header />}>
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 
