@@ -5,15 +5,17 @@ function Word({ word }) {
     const [translation, setTranslation] = useState('');
 
     useEffect(() => {
-        const tempData = { word: word };
-        axios.post(
-            'http://localhost:8080/v1/translation-pair/translate/eng-to-ukr-word',
-            tempData
-        )
-            .then(response => {
-                setTranslation(response.data);
-            })
-            .catch(err => console.log(err));
+        if (word && word.trim() !== '' && /^[a-zA-Z]+$/.test(word)) {
+            const tempData = { word: word };
+            axios.post(
+                'http://localhost:8080/v1/translation-pair/translate/eng-to-ukr-word',
+                tempData
+            )
+                .then(response => {
+                    setTranslation(response.data);
+                })
+                .catch(err => console.log(err));
+        }
     }, [word]);
 
     return (

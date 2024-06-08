@@ -1,8 +1,11 @@
 import React from 'react';
-import {AppBar, Toolbar, Button, Box, DialogTitle} from '@mui/material';
+import {AppBar, Toolbar, Button, Box, DialogTitle, useTheme} from '@mui/material';
 import Words from "../word/Words";
+import {Link} from "react-router-dom";
 
 const Header = () => {
+    const theme = useTheme();
+
     return (
         <AppBar position="sticky">
             <Toolbar>
@@ -14,7 +17,9 @@ const Header = () => {
 
                     {/* Middle Section */}
                     <Box display="flex" justifyContent="center" flexGrow={1}>
-                        <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Rules" /></Button>
+                        <Link to={`/rules`} style={{ textDecoration: 'none' }}>
+                            <Button color="white" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Rules" /></Button>
+                        </Link>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Tests" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Word Modules" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Books" /></Button>

@@ -1,12 +1,14 @@
 import React from 'react';
 import Word from "./Word";
 
-function createWordElem(input){
+function createWordElem(input, index){
+    const cleanedWord = input.replace(/[^a-zA-Z]/g, '');
+
     return (
-        <>
-            <Word key={input} word={input} />
+        <React.Fragment key={index}>
+            <Word word={cleanedWord} />
             {' '}
-        </>
+        </React.Fragment>
     );
 }
 
