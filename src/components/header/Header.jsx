@@ -12,7 +12,9 @@ const Header = () => {
                 <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
                     {/* Left Section */}
                     <Box>
-                        <DialogTitle color="inherit">Enuga.com</DialogTitle>
+                        <Link to={`/`} style={{ textDecoration: 'none' }}>
+                            <DialogTitle style={{ color: theme.palette.white.main, marginLeft: 0, marginRight: 0 }}>Enuga.com</DialogTitle>
+                        </Link>
                     </Box>
 
                     {/* Middle Section */}
@@ -20,7 +22,9 @@ const Header = () => {
                         <Link to={`/rules`} style={{ textDecoration: 'none' }}>
                             <Button color="white" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Rules" /></Button>
                         </Link>
-                        <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Tests" /></Button>
+                        <Link to={`/english-tests`} style={{ textDecoration: 'none' }}>
+                            <Button color="white" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Tests" /></Button>
+                        </Link>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Word Modules" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Books" /></Button>
                         <Button color="inherit" style={{ marginLeft: 0, marginRight: 0 }}><Words text="Vocabulary" /></Button>

@@ -7,8 +7,16 @@ const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 
 const theme = createTheme({
     palette: {
-        white: createColor('#FFFFFF'),
+        white: {
+            main: '#FFFFFF'
+        },
     },
+    root: {
+        margin: '16px',
+    },
+    input: {
+        marginTop: '8px',
+    }
 });
 
 export default theme;
