@@ -8,6 +8,9 @@ import theme from "./materialUI/Theme";
 import EnglishTest from "./english-test/EnglishTest";
 import AllEnglishTests from "./english-test/AllEnglishTests";
 import VocabularyPage from "./vocabulary/VocabularyPage";
+import VocabularyAndFindWordPage from "./vocabulary/VocabularyAndFindWordPage";
+import TranslateEnglishPage from "./vocabulary/findwords/TranslateEnglishPage";
+import TranslateUkrainianPage from "./vocabulary/findwords/TranslateUkrainianPage";
 
 function App() {
 
@@ -21,7 +24,10 @@ function App() {
                     <Route path="rules/:id" element={<RulePage/>}/>
                     <Route path="english-tests" element={<AllEnglishTests/>}/>
                     <Route path="english-tests/:id" element={<EnglishTest/>}/>
+                    <Route path="vocabulary-and-find-words/" element={<VocabularyAndFindWordPage/>}/>
                     <Route path="vocabulary/:page" element={<VocabularyPage/>}/>
+                    <Route path="/translate-eng" element={<TranslateEnglishPage/>}/>
+                    <Route path="/translate-ukr" element={<TranslateUkrainianPage/>}/>
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>
