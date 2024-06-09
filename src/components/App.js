@@ -11,15 +11,16 @@ import VocabularyPage from "./vocabulary/VocabularyPage";
 import VocabularyAndFindWordPage from "./vocabulary/VocabularyAndFindWordPage";
 import TranslateEnglishPage from "./vocabulary/findwords/TranslateEnglishPage";
 import TranslateUkrainianPage from "./vocabulary/findwords/TranslateUkrainianPage";
+import ReadBookPage from "./book/ReadBookPage";
+import AllBookCards from "./book/AllBookCards";
 
 function App() {
-
     return (
         <ThemeProvider theme={theme}>
             <BrowserRouter>
                 <Header/>
                 <Routes>
-                    <Route path="/"/>
+                    <Route path="/" />
                     <Route path="rules/" element={<AllRulesPage/>}/>
                     <Route path="rules/:id" element={<RulePage/>}/>
                     <Route path="english-tests" element={<AllEnglishTests/>}/>
@@ -28,6 +29,8 @@ function App() {
                     <Route path="vocabulary/:page" element={<VocabularyPage/>}/>
                     <Route path="/translate-eng" element={<TranslateEnglishPage/>}/>
                     <Route path="/translate-ukr" element={<TranslateUkrainianPage/>}/>
+                    <Route path="books/" element={<AllBookCards/>}/>
+                    <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage/>}/>
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>

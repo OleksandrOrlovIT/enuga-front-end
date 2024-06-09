@@ -1,23 +1,23 @@
 import React from 'react';
 import Word from "./Word";
 
-function createWordElem(input, index){
+function createWordElem(input, index) {
     const cleanedWord = input.replace(/[^a-zA-Z]/g, '');
 
     return (
         <React.Fragment key={index}>
-            <Word word={cleanedWord} />
-            {' '}
+            {/[a-zA-Z]/.test(input) ? <Word word={cleanedWord} /> : input}
         </React.Fragment>
     );
 }
 
-function Words({ text }){
-    const words = text.split(" ");
+function Words({ text }) {
+    console.log("received text ", text);
+    const wordsAndPunctuation = text.split(/(\s+|[^a-zA-Z]+)/).filter(Boolean);
 
     return (
         <div>
-            {words.map(createWordElem)}
+            {wordsAndPunctuation.map((word, index) => createWordElem(word, index))}
         </div>
     );
 }
