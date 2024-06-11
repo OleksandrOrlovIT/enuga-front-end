@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, List, ListItem, ListItemText } from '@mui/material';
-import axios from 'axios';
+import api from "../../auth/api";
 
 const TranslationPage = ({ linkUrl }) => {
     const [inputText, setInputText] = useState('');
@@ -12,12 +12,10 @@ const TranslationPage = ({ linkUrl }) => {
 
     const handleTranslate = async () => {
         try {
-            console.log("InputText", inputText);
-            const response = await axios.post(
+            const response = await api.post(
                 linkUrl,
                 { word: inputText }
             );
-            console.log("Response data:", response.data);
             setTranslatedWords(response.data);
         } catch (error) {
             console.error('Error fetching translations:', error);

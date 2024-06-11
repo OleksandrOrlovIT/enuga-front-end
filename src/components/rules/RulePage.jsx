@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from "axios";
 import {Grid, Typography} from "@mui/material";
 import Words from "../word/Words";
+import api from "../auth/api";
 
 function RulePage() {
     const { id } = useParams();
@@ -10,7 +10,7 @@ function RulePage() {
     const [rule, setRule] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/v1/rule/${id}`)
+        api.get(`/v1/rule/${id}`)
             .then(response => {
                 console.log(response.data);
                 setRule(response.data);

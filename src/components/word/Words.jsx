@@ -12,7 +12,6 @@ function createWordElem(input, index) {
 }
 
 function Words({ text }) {
-    console.log("received text ", text);
     const wordsAndPunctuation = text.split(/(\s+|[^a-zA-Z]+)/).filter(Boolean);
 
     return (

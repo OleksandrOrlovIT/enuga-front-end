@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from "../auth/api";
 
 function Word({ word }) {
     const [translation, setTranslation] = useState('');
@@ -7,10 +7,7 @@ function Word({ word }) {
     useEffect(() => {
         if (word && word.trim() !== '' && /^[a-zA-Z]+$/.test(word)) {
             const tempData = { word: word };
-            axios.post(
-                'http://localhost:8080/v1/translation-pair/translate/eng-to-ukr-word',
-                tempData
-            )
+            api.post("/v1/translation-pair/translate/eng-to-ukr-word", tempData)
                 .then(response => {
                     setTranslation(response.data);
                 })

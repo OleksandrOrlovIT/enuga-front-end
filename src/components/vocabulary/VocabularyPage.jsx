@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import { Container, PaginationItem } from '@mui/material';
 import { Link, useParams } from "react-router-dom";
 import TranslationTable from './TranslationTable';
 import Pagination from "@mui/material/Pagination";
+import api from "../auth/api";
 
 function VocabularyPage() {
     const { page } = useParams();
@@ -18,7 +18,7 @@ function VocabularyPage() {
             page: changedPage,
             size: 10
         };
-        axios.post(`http://localhost:8080/v1/translation-pairs`, input)
+        api.post(`/v1/translation-pairs`, input)
             .then(response => {
                 setWords(response.data);
                 setTotalPages(Math.ceil(response.data.totalElements / pageSize));

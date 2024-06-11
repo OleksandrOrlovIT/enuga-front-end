@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Question from "./Question";
+import api from "../auth/api";
 
 function EnglishTest() {
     const { id } = useParams();
@@ -9,7 +9,7 @@ function EnglishTest() {
     const [test, setTest] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/v1/english-test/${id}`)
+        api.get(`/v1/english-test/${id}`)
             .then(response => {
                 console.log(response.data);
                 setTest(response.data);

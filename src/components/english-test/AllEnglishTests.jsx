@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import { Grid, Container } from '@mui/material';
 import EnglishTestCard from "./EnglishTestCard";
+import api from "../auth/api";
 
 function AllEnglishTests() {
     const [tests, setTests] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/v1/english-tests`)
+        api.get(`/v1/english-tests`)
             .then(response => {
                 setTests(response.data);
             })

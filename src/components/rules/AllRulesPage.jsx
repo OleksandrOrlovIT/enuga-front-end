@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import RuleCard from "./RuleCard";
 import { Grid, Container } from '@mui/material';
+import api from "../auth/api";
 
 function RulePage() {
     const [rules, setRules] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/v1/rules`)
+        api.get(`/v1/rules`)
             .then(response => {
                 setRules(response.data);
             })

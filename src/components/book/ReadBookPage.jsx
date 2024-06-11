@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Typography, Box, Pagination, PaginationItem } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
-import axios from "axios";
 import Words from "../word/Words";
+import api from "../auth/api";
 
 const ReadBookPage = () => {
     const { id, pageNumber } = useParams();
@@ -14,7 +14,7 @@ const ReadBookPage = () => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/v1/book/${id}/page/${currentPage}`)
+        api.get(`/v1/book/${id}/page/${currentPage}`)
             .then(response => {
                 setPageData(response.data);
             })

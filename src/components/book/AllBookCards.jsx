@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
 import { Grid, Container } from '@mui/material';
 import BookCard from "./BookCard";
+import api from "../auth/api";
 
 function AllBookCards() {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/v1/books`)
+        api.get("/v1/books")
             .then(response => {
                 setBooks(response.data);
             })

@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {AppBar, Toolbar, Button, Box, DialogTitle, useTheme} from '@mui/material';
 import Words from "../word/Words";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {AuthContext} from "../auth/AuthContext";
 
 const Header = () => {
     const theme = useTheme();
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+    };
 
     return (
         <AppBar position="sticky">
@@ -12,7 +20,7 @@ const Header = () => {
                 <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
                     {/* Left Section */}
                     <Box>
-                        <Link to={`/`} style={{textDecoration: 'none'}}>
+                        <Link to={`/home`} style={{textDecoration: 'none'}}>
                             <DialogTitle style={{
                                 color: theme.palette.white.main,
                                 marginLeft: 0,
@@ -44,7 +52,7 @@ const Header = () => {
                     {/* Right Section */}
                     <Box>
                         <Button color="inherit"><Words text="Profile"/></Button>
-                        <Button color="inherit"><Words text="Leave account"/></Button>
+                        <Button color="inherit" onClick={handleLogout}><Words text="Leave account"/></Button>
                     </Box>
                 </Box>
             </Toolbar>
