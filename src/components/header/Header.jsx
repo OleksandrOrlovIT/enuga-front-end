@@ -6,7 +6,7 @@ import {AuthContext} from "../auth/AuthContext";
 
 const Header = () => {
     const theme = useTheme();
-    const { logout } = useContext(AuthContext);
+    const {logout} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -51,7 +51,9 @@ const Header = () => {
 
                     {/* Right Section */}
                     <Box>
-                        <Button color="inherit"><Words text="Profile"/></Button>
+                        <Link to={`/profile`} style={{textDecoration: 'none'}}>
+                            <Button color="white"><Words text="ProfilePage"/></Button>
+                        </Link>
                         <Button color="inherit" onClick={handleLogout}><Words text="Leave account"/></Button>
                     </Box>
                 </Box>

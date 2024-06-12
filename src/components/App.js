@@ -17,6 +17,7 @@ import LoginPage from "./auth/LoginPage";
 import {AuthContext, AuthProvider} from "./auth/AuthContext";
 import SignUpPage from "./auth/SignUpPage";
 import HomePage from "./home/HomePage";
+import ProfilePage from "./profile/ProfilePage";
 
 const AppContent = () => {
     const {user, hasRole} = useContext(AuthContext);
@@ -44,6 +45,7 @@ const AppContent = () => {
                                 <Route path="/books" element={<AllBookCards/>}/>
                             )}
                             <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage/>}/>
+                            <Route path="/profile" element={<ProfilePage/>}/>
                             <Route path="*" element={<Navigate to="/home"/>}/>
                         </>
                     ) :
