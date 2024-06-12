@@ -19,6 +19,7 @@ import SignUpPage from "./auth/SignUpPage";
 import HomePage from "./home/HomePage";
 import ProfilePage from "./profile/ProfilePage";
 import RuleForm from "./rules/RuleForm";
+import EnglishTestForm from "./english-test/EnglishTestForm";
 
 const AppContent = () => {
     const {user, hasRole} = useContext(AuthContext);
@@ -36,21 +37,26 @@ const AppContent = () => {
                             <Route path="/rules" element={<AllRulesPage/>}/>
                             <Route path="/rules/:id" element={<RulePage/>}/>
                             {hasRole('ROLE_ENGLISH_TEACHER_USER') && (
-                                <Route path="/rules/create" element={<RuleForm/>}/>
-                            )}
-                            {hasRole('ROLE_ENGLISH_TEACHER_USER') && (
-                                <Route path="/rules/update/:id" element={<RuleForm/>}/>
+                                <>
+                                    <Route path="/rules/create" element={<RuleForm/>}/>
+                                    <Route path="/rules/update/:id" element={<RuleForm/>}/>
+                                    <Route path="/english-tests/create" element={<EnglishTestForm/>}/>
+                                    <Route path="/english-tests/update/:id" element={<EnglishTestForm/>}/>
+                                </>
                             )}
                             <Route path="/english-tests" element={<AllEnglishTests/>}/>
                             <Route path="/english-tests/:id" element={<EnglishTest/>}/>
+
                             <Route path="/vocabulary-and-find-words" element={<VocabularyAndFindWordPage/>}/>
                             <Route path="/vocabulary/:page" element={<VocabularyPage/>}/>
                             <Route path="/translate-eng" element={<TranslateEnglishPage/>}/>
                             <Route path="/translate-ukr" element={<TranslateUkrainianPage/>}/>
                             {hasRole('ROLE_USER_WITH_SUBSCRIPTION') && (
-                                <Route path="/books" element={<AllBookCards/>}/>
+                                <>
+                                    <Route path="/books" element={<AllBookCards/>}/>
+                                    <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage/>}/>
+                                </>
                             )}
-                            <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage/>}/>
                             <Route path="/profile" element={<ProfilePage/>}/>
                             <Route path="*" element={<Navigate to="/home"/>}/>
                         </>
