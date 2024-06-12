@@ -7,7 +7,7 @@ function Word({ word }) {
     useEffect(() => {
         if (word && word.trim() !== '' && /^[a-zA-Z]+$/.test(word)) {
             const tempData = { word: word };
-            api.post("/v1/translation-pair/translate/eng-to-ukr-word", tempData)
+            api.post("/translation-pair/translate/eng-to-ukr-word", tempData)
                 .then(response => {
                     setTranslation(response.data);
                 })

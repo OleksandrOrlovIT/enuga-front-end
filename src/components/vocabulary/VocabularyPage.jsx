@@ -18,7 +18,7 @@ function VocabularyPage() {
             page: changedPage,
             size: 10
         };
-        api.post(`/v1/translation-pairs`, input)
+        api.post(`/translation-pairs`, input)
             .then(response => {
                 setWords(response.data);
                 setTotalPages(Math.ceil(response.data.totalElements / pageSize));

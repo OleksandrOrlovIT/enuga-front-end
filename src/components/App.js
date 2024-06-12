@@ -18,10 +18,10 @@ import {AuthContext, AuthProvider} from "./auth/AuthContext";
 import SignUpPage from "./auth/SignUpPage";
 import HomePage from "./home/HomePage";
 import ProfilePage from "./profile/ProfilePage";
+import RuleForm from "./rules/RuleForm";
 
 const AppContent = () => {
     const {user, hasRole} = useContext(AuthContext);
-    console.log(user);
     const location = useLocation();
     const isLoginPage = location.pathname === '/';
     const isSignupPage = location.pathname === '/signup';
@@ -35,6 +35,12 @@ const AppContent = () => {
                             <Route path="/home" element={<HomePage/>}/>
                             <Route path="/rules" element={<AllRulesPage/>}/>
                             <Route path="/rules/:id" element={<RulePage/>}/>
+                            {hasRole('ROLE_ENGLISH_TEACHER_USER') && (
+                                <Route path="/rules/create" element={<RuleForm/>}/>
+                            )}
+                            {hasRole('ROLE_ENGLISH_TEACHER_USER') && (
+                                <Route path="/rules/update/:id" element={<RuleForm/>}/>
+                            )}
                             <Route path="/english-tests" element={<AllEnglishTests/>}/>
                             <Route path="/english-tests/:id" element={<EnglishTest/>}/>
                             <Route path="/vocabulary-and-find-words" element={<VocabularyAndFindWordPage/>}/>

@@ -7,7 +7,7 @@ function AllEnglishTests() {
     const [tests, setTests] = useState([]);
 
     useEffect(() => {
-        api.get(`/v1/english-tests`)
+        api.get(`/english-tests`)
             .then(response => {
                 setTests(response.data);
             })

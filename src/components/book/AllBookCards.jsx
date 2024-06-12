@@ -7,7 +7,7 @@ function AllBookCards() {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        api.get("/v1/books")
+        api.get("/books")
             .then(response => {
                 setBooks(response.data);
             })

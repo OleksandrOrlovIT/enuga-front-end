@@ -52,7 +52,7 @@ const Header = () => {
                     {/* Right Section */}
                     <Box>
                         <Link to={`/profile`} style={{textDecoration: 'none'}}>
-                            <Button color="white"><Words text="ProfilePage"/></Button>
+                            <Button color="white"><Words text="Profile Page"/></Button>
                         </Link>
                         <Button color="inherit" onClick={handleLogout}><Words text="Leave account"/></Button>
                     </Box>

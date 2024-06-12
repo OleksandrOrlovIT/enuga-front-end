@@ -6,7 +6,7 @@ function BookCard({book}) {
     const page = 1;
 
     return (
-        <CustomCard heading={heading} linkTo={`/books/${book.id}/page/${page}`} maxWidth={'400px'}/>
+        <CustomCard heading={heading} linkToGet={`/books/${book.id}/page/${page}`} maxWidth={'400px'}/>
     );
 }
 

@@ -9,7 +9,7 @@ function EnglishTest() {
     const [test, setTest] = useState('');
 
     useEffect(() => {
-        api.get(`/v1/english-test/${id}`)
+        api.get(`/english-test/${id}`)
             .then(response => {
                 console.log(response.data);
                 setTest(response.data);

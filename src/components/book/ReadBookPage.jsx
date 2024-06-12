@@ -14,7 +14,7 @@ const ReadBookPage = () => {
     };
 
     useEffect(() => {
-        api.get(`/v1/book/${id}/page/${currentPage}`)
+        api.get(`/book/${id}/page/${currentPage}`)
             .then(response => {
                 setPageData(response.data);
             })
