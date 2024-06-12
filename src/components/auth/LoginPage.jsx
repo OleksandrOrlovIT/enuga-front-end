@@ -25,10 +25,9 @@ function LoginPage() {
             };
 
             const response = await axios.post('http://localhost:8080/v1/auth/login', body);
-            console.log('Login successful:', response.data);
 
-            const { token, user } = response.data;
-            login(token, user);
+            const { token, userWithoutPassResponse } = response.data;
+            login(token, userWithoutPassResponse);
 
             navigate('/home');
         } catch (error) {
