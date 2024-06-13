@@ -48,7 +48,6 @@ function EnglishTestCard({ englishTest, userId, onDelete }) {
             heading={englishTest.testName}
             linkToGet={`/english-tests/${englishTest.id}`}
             deleteFunc={deleteCard}
-            successPercentage={bestPercentage}
             lastTryPercentage={lastTryPercentage}
             bestPercentage={bestPercentage}
         />

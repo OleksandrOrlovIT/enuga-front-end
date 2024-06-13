@@ -1,14 +1,24 @@
-import React, { useContext } from 'react';
-import { Container, Typography, Box, List, ListItem, ListItemText, Paper } from '@mui/material';
+import React, {useContext} from 'react';
+import {
+    Container,
+    Typography,
+    Box,
+    List,
+    ListItem,
+    ListItemText,
+    Paper,
+} from '@mui/material';
 import {AuthContext} from "../auth/AuthContext";
+import LastTestAttemptsList from "../common/LastTestAttemptsList";
 
 const ProfilePage = () => {
     const { user } = useContext(AuthContext);
 
     return (
-        <Container maxWidth="sm">
-            <Box mt={4}>
-                <Paper elevation={3} style={{ padding: '20px' }}>
+        <Container maxWidth="lg">
+            <Box mt={4} display="flex" justifyContent="space-between">
+                {/* Profile Information */}
+                <Paper elevation={3} style={{ padding: '20px', flex: '1 0 45%' }}>
                     <Typography variant="h4" gutterBottom>
                         User Profile
                     </Typography>
@@ -30,6 +40,9 @@ const ProfilePage = () => {
                         </ListItem>
                     </List>
                 </Paper>
+
+                {/* Test Attempt Statistics */}
+                <LastTestAttemptsList numStats={5} />
             </Box>
         </Container>
     );

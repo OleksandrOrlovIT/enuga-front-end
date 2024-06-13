@@ -1,8 +1,10 @@
 import React from 'react';
+import LastTestAttemptsList from "../common/LastTestAttemptsList";
 
 function HomePage(){
+
     return <div>
-        Home Page
+        <LastTestAttemptsList numStats={5} />
     </div>
 }
 
