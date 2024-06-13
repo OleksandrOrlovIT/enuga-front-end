@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, Box, Pagination, PaginationItem } from '@mui/material';
+import React, {useContext, useEffect, useState} from 'react';
+import {Container, Typography, Box, Pagination, PaginationItem, Grid, Button} from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import Words from "../word/Words";
 import api from "../auth/api";
+import {AuthContext} from "../auth/AuthContext";
 
 const ReadBookPage = () => {
+    const {hasRole} = useContext(AuthContext);
     const { id, pageNumber } = useParams();
     const [currentPage, setCurrentPage] = useState(parseInt(pageNumber));
     const [pageData, setPageData] = useState({});
@@ -59,6 +61,15 @@ const ReadBookPage = () => {
                         boundaryCount={1}
                         siblingCount={2}
                     />
+                    {hasRole('ROLE_ENGLISH_TEACHER_USER') &&
+                        <Grid container justifyContent="right" style={{marginTop: '20px', marginRight: '400px'}}>
+                            <Link to={`/books/update/${pageData.bookResponse.id}`} style={{textDecoration: 'none'}}>
+                                <Button variant="contained" color="primary" sx={{fontSize: '1.0rem', padding: '10px 20px'}}>
+                                    <Words text="Edit book"/>
+                                </Button>
+                            </Link>
+                        </Grid>
+                    }
                 </>
             )}
         </Container>

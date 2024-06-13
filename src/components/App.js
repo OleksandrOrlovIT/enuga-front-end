@@ -21,6 +21,7 @@ import ProfilePage from "./profile/ProfilePage";
 import RuleForm from "./rules/RuleForm";
 import EnglishTestForm from "./english-test/EnglishTestForm";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import BookForm from "./book/BookForm";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -57,6 +58,8 @@ const AppContent = () => {
                     <Route path="/rules/update/:id" element={<RuleForm />} />
                     <Route path="/english-tests/create" element={<EnglishTestForm />} />
                     <Route path="/english-tests/update/:id" element={<EnglishTestForm />} />
+                    <Route path="/books/create" element={<BookForm />} />
+                    <Route path="/books/update/:id" element={<BookForm />} />
                 </Route>
 
                 <Route element={<ProtectedRoute role="ROLE_USER_WITH_SUBSCRIPTION" />}>
