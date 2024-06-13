@@ -8,7 +8,7 @@ import Words from "../word/Words";
 
 function AllEnglishTests() {
     const [tests, setTests] = useState([]);
-    const {hasRole} = useContext(AuthContext);
+    const {user, hasRole} = useContext(AuthContext);
 
     useEffect(() => {
         api.get(`/english-tests`)
@@ -31,7 +31,7 @@ function AllEnglishTests() {
             <Grid container spacing={3} justifyContent="center">
                 {tests.map((test) => (
                     <Grid item key={test.id}>
-                        <EnglishTestCard englishTest={test} onDelete={deleteEnglishTest}/>
+                        <EnglishTestCard englishTest={test} onDelete={deleteEnglishTest} userId={user.id}/>
                     </Grid>
                 ))}
             </Grid>
