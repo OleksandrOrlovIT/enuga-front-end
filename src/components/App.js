@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {BrowserRouter, Route, Routes, useLocation, Navigate} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
 import Header from "./header/Header";
 import RulePage from "./rules/RulePage";
 import AllRulesPage from "./rules/AllRulesPage";

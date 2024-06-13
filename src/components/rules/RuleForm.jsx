@@ -13,7 +13,6 @@ const RuleForm = () => {
         if (id) {
             api.get(`/rule/${id}`)
                 .then(response => {
-                    console.log(response.data);
                     setRule(response.data);
                     setIsLoading(false);
                 })

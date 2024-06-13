@@ -5,8 +5,6 @@ import {AuthContext} from "../auth/AuthContext";
 const ProfilePage = () => {
     const { user } = useContext(AuthContext);
 
-    console.log(user);
-
     return (
         <Container maxWidth="sm">
             <Box mt={4}>
