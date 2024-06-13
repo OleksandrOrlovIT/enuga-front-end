@@ -1,10 +1,10 @@
 import React from 'react';
-import LastTestAttemptsList from "../common/LastTestAttemptsList";
+import LastTestAttemptsList from "../test-stat/LastTestAttemptsList";
 
 function HomePage(){
 
     return <div>
-        <LastTestAttemptsList numStats={5} />
+        <LastTestAttemptsList pageSize={5} isMinimized={true}/>
     </div>
 }
 

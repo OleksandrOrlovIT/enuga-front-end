@@ -22,6 +22,7 @@ import RuleForm from "./rules/RuleForm";
 import EnglishTestForm from "./english-test/EnglishTestForm";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import BookForm from "./book/BookForm";
+import AllTestStatsPage from "./test-stat/AllTestStatsPage";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -39,13 +40,14 @@ const AppContent = () => {
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/home" element={<HomePage />} />
 
                 <Route element={<ProtectedRoute />}>
+                    <Route path="/home" element={<HomePage />} />
                     <Route path="/rules" element={<AllRulesPage />} />
                     <Route path="/rules/:id" element={<RulePage />} />
                     <Route path="/english-tests" element={<AllEnglishTests />} />
                     <Route path="/english-tests/:id" element={<EnglishTest />} />
+                    <Route path="/english-tests/stats/:pageNumber" element={<AllTestStatsPage />} />
                     <Route path="/vocabulary-and-find-words" element={<VocabularyAndFindWordPage />} />
                     <Route path="/vocabulary/:page" element={<VocabularyPage />} />
                     <Route path="/translate-eng" element={<TranslateEnglishPage />} />

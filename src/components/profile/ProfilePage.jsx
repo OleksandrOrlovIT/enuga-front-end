@@ -9,16 +9,16 @@ import {
     Paper,
 } from '@mui/material';
 import {AuthContext} from "../auth/AuthContext";
-import LastTestAttemptsList from "../common/LastTestAttemptsList";
+import LastTestAttemptsList from "../test-stat/LastTestAttemptsList";
 
 const ProfilePage = () => {
     const { user } = useContext(AuthContext);
 
     return (
         <Container maxWidth="lg">
-            <Box mt={4} display="flex" justifyContent="space-between">
+            <Box mt={4} display="flex" justifyContent="space-between" flexWrap="wrap">
                 {/* Profile Information */}
-                <Paper elevation={3} style={{ padding: '20px', flex: '1 0 45%' }}>
+                <Paper elevation={3} style={{ padding: '20px', flex: '1 0 45%', marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
                     <Typography variant="h4" gutterBottom>
                         User Profile
                     </Typography>
@@ -35,14 +35,16 @@ const ProfilePage = () => {
                         <ListItem>
                             <ListItemText
                                 primary="Roles"
-                                secondary={user.roles && user.roles.map(role => role).join(',\n')}
+                                secondary={user.roles && user.roles.map(role => role).join(', ')}
                             />
                         </ListItem>
                     </List>
                 </Paper>
 
                 {/* Test Attempt Statistics */}
-                <LastTestAttemptsList numStats={5} />
+                <Paper elevation={3} style={{ padding: '20px', flex: '1 0 45%', marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
+                    <LastTestAttemptsList pageSize={5} isMinimized={true} />
+                </Paper>
             </Box>
         </Container>
     );
