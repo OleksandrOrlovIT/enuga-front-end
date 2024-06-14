@@ -31,7 +31,7 @@ function AllEnglishTests() {
             <Grid container spacing={3} justifyContent="center">
                 {tests.map((test) => (
                     <Grid item key={test.id}>
-                        <EnglishTestCard englishTest={test} onDelete={deleteEnglishTest} userId={user.id}/>
+                        <EnglishTestCard wordModule={test} onDelete={deleteEnglishTest} userId={user.id}/>
                     </Grid>
                 ))}
             </Grid>

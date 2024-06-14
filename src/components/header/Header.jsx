@@ -37,8 +37,10 @@ const Header = () => {
                         <Link to={`/english-tests`} style={{textDecoration: 'none'}}>
                             <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words text="Tests"/></Button>
                         </Link>
-                        <Button color="inherit" style={{marginLeft: 0, marginRight: 0}}><Words
-                            text="Word Modules"/></Button>
+                        <Link to={`/word-modules`} style={{textDecoration: 'none'}}>
+                            <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words
+                                text="Word Modules"/></Button>
+                        </Link>
                         <Link to={`/books/`} style={{textDecoration: 'none'}}>
                             <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words
                                 text="Books"/></Button>

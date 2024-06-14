@@ -30,14 +30,14 @@ function EnglishTestForm() {
     const handleAddQuestion = () => {
         setTest(prevState => ({
             ...prevState,
-            questions: [...prevState.questions, { questionText: '', answer: '' }]
+            customPairs: [...prevState.questions, { questionText: '', answer: '' }]
         }));
     };
 
     const handleDeleteQuestion = (index) => {
         setTest(prevState => ({
             ...prevState,
-            questions: prevState.questions.filter((_, i) => i !== index)
+            customPairs: prevState.questions.filter((_, i) => i !== index)
         }));
     };
 
@@ -45,7 +45,7 @@ function EnglishTestForm() {
         setTest((prevTest) => {
             const updatedQuestions = [...prevTest.questions];
             updatedQuestions[index] = updatedQuestion;
-            return { ...prevTest, questions: updatedQuestions };
+            return { ...prevTest, customPairs: updatedQuestions };
         });
     };
 

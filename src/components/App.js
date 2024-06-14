@@ -23,6 +23,11 @@ import EnglishTestForm from "./english-test/EnglishTestForm";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import BookForm from "./book/BookForm";
 import AllTestStatsPage from "./test-stat/AllTestStatsPage";
+import AllWordModules from "./word-module/AllWordModules";
+import WordModule from "./word-module/WordModule";
+import WordModuleForm from "./word-module/WordModuleForm";
+import AllPublicWordModulesWithoutUser from "./word-module/public/AllPublicWordModulesWithoutUser";
+import AllUserWordModulesPage from "./word-module/user-modules/AllUserWordModulesPage";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -47,7 +52,16 @@ const AppContent = () => {
                     <Route path="/rules/:id" element={<RulePage />} />
                     <Route path="/english-tests" element={<AllEnglishTests />} />
                     <Route path="/english-tests/:id" element={<EnglishTest />} />
+                    {/*todo alltestspage for word modules*/}
                     <Route path="/english-tests/stats/:pageNumber" element={<AllTestStatsPage />} />
+
+                    <Route path="/word-modules" element={<AllWordModules />} />
+                    <Route path="/word-modules/public/:pageNumber" element={<AllPublicWordModulesWithoutUser />} />
+                    <Route path="/word-modules/user/:pageNumber" element={<AllUserWordModulesPage />} />
+                    <Route path="/word-modules/:id" element={<WordModule />} />
+                    <Route path="/word-modules/create" element={<WordModuleForm />} />
+                    <Route path="/word-modules/update/:id" element={<WordModuleForm />} />
+
                     <Route path="/vocabulary-and-find-words" element={<VocabularyAndFindWordPage />} />
                     <Route path="/vocabulary/:page" element={<VocabularyPage />} />
                     <Route path="/translate-eng" element={<TranslateEnglishPage />} />
@@ -60,6 +74,7 @@ const AppContent = () => {
                     <Route path="/rules/update/:id" element={<RuleForm />} />
                     <Route path="/english-tests/create" element={<EnglishTestForm />} />
                     <Route path="/english-tests/update/:id" element={<EnglishTestForm />} />
+
                     <Route path="/books/create" element={<BookForm />} />
                     <Route path="/books/update/:id" element={<BookForm />} />
                 </Route>

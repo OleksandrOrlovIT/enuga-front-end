@@ -12,11 +12,11 @@ function createWordElem(input, index) {
 }
 
 function Words({ text }) {
-    const wordsAndPunctuation = text.split(/(\s+|[^a-zA-Z]+)/).filter(Boolean);
+    const wordsAndPunctuation = text ? text.split(/(\s+|[^a-zA-Z]+)/).filter(Boolean) : text;
 
     return (
         <div>
-            {wordsAndPunctuation.map((word, index) => createWordElem(word, index))}
+            { wordsAndPunctuation ? wordsAndPunctuation.map((word, index) => createWordElem(word, index)) : wordsAndPunctuation}
         </div>
     );
 }
