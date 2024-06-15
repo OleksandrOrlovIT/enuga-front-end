@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem, ListItemText } from '@mui/material';
-import {getGradientColor} from "../common/GradientColor";
+import {getGradientColor} from "../../common/GradientColor";
 
 const TestStatListItem = ({ testAttempt }) => {
     const { englishTestId, attemptDate, successPercentage } = testAttempt;

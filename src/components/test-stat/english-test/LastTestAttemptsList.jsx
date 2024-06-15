@@ -1,9 +1,9 @@
 import {Box, Button, CircularProgress, List, PaginationItem, Typography} from "@mui/material";
 import TestStatListItem from "./TestStatListItem";
 import React, {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../auth/AuthContext";
-import api from "../auth/api";
-import Words from "../word/Words";
+import {AuthContext} from "../../auth/AuthContext";
+import api from "../../auth/api";
+import Words from "../../word/Words";
 import {Link, useNavigate} from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 

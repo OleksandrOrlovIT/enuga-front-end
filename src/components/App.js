@@ -22,12 +22,13 @@ import RuleForm from "./rules/RuleForm";
 import EnglishTestForm from "./english-test/EnglishTestForm";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import BookForm from "./book/BookForm";
-import AllTestStatsPage from "./test-stat/AllTestStatsPage";
+import AllTestStatsPage from "./test-stat/english-test/AllTestStatsPage";
 import AllWordModules from "./word-module/AllWordModules";
 import WordModule from "./word-module/WordModule";
 import WordModuleForm from "./word-module/WordModuleForm";
 import AllPublicWordModulesWithoutUser from "./word-module/public/AllPublicWordModulesWithoutUser";
 import AllUserWordModulesPage from "./word-module/user-modules/AllUserWordModulesPage";
+import AllWordModuleStatsPage from "./test-stat/word-module/AllWordModuleStatsPage";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -52,7 +53,6 @@ const AppContent = () => {
                     <Route path="/rules/:id" element={<RulePage />} />
                     <Route path="/english-tests" element={<AllEnglishTests />} />
                     <Route path="/english-tests/:id" element={<EnglishTest />} />
-                    {/*todo alltestspage for word modules*/}
                     <Route path="/english-tests/stats/:pageNumber" element={<AllTestStatsPage />} />
 
                     <Route path="/word-modules" element={<AllWordModules />} />
@@ -61,6 +61,7 @@ const AppContent = () => {
                     <Route path="/word-modules/:id" element={<WordModule />} />
                     <Route path="/word-modules/create" element={<WordModuleForm />} />
                     <Route path="/word-modules/update/:id" element={<WordModuleForm />} />
+                    <Route path="/word-modules/stats/:pageNumber" element={<AllWordModuleStatsPage />} />
 
                     <Route path="/vocabulary-and-find-words" element={<VocabularyAndFindWordPage />} />
                     <Route path="/vocabulary/:page" element={<VocabularyPage />} />

@@ -3,48 +3,37 @@ import {
     Container,
     Typography,
     Box,
-    List,
-    ListItem,
-    ListItemText,
     Paper,
 } from '@mui/material';
 import {AuthContext} from "../auth/AuthContext";
-import LastTestAttemptsList from "../test-stat/LastTestAttemptsList";
+import LastTestAttemptsList from "../test-stat/english-test/LastTestAttemptsList";
+import LastWordModuleAttemptsList from "../test-stat/word-module/LastWordModuleAttemptsList";
 
 const ProfilePage = () => {
     const { user } = useContext(AuthContext);
 
     return (
         <Container maxWidth="lg">
-            <Box mt={4} display="flex" justifyContent="space-between" flexWrap="wrap">
-                {/* Profile Information */}
-                <Paper elevation={3} style={{ padding: '20px', flex: '1 0 45%', marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
-                    <Typography variant="h4" gutterBottom>
-                        User Profile
+            <Box mt={4}>
+                {/* User Information */}
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+                    <Typography variant="h4">
+                        FirstName: {user.firstName}, LastName: {user.lastName}
                     </Typography>
-                    <List>
-                        <ListItem>
-                            <ListItemText primary="Email" secondary={user.email} />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="First Name" secondary={user.firstName} />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="Last Name" secondary={user.lastName} />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="Roles"
-                                secondary={user.roles && user.roles.map(role => role).join(', ')}
-                            />
-                        </ListItem>
-                    </List>
-                </Paper>
+                    <Typography variant="body1">
+                        Email: {user.email}
+                    </Typography>
+                </Box>
 
-                {/* Test Attempt Statistics */}
-                <Paper elevation={3} style={{ padding: '20px', flex: '1 0 45%', marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
-                    <LastTestAttemptsList pageSize={5} isMinimized={true} />
-                </Paper>
+                {/* Stat Components */}
+                <Box display="flex" justifyContent="space-between">
+                    <Paper elevation={3} style={{ padding: '20px', flex: '1 0 48%' }}>
+                        <LastTestAttemptsList pageSize={5} isMinimized={true} />
+                    </Paper>
+                    <Paper elevation={3} style={{ padding: '20px', flex: '1 0 48%' }}>
+                        <LastWordModuleAttemptsList pageSize={5} isMinimized={true} />
+                    </Paper>
+                </Box>
             </Box>
         </Container>
     );
