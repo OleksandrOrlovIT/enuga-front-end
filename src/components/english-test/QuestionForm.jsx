@@ -3,7 +3,7 @@ import { TextField, Typography } from "@mui/material";
 
 const QuestionForm = ({ question, onUpdateQuestion }) => {
     const [questionText, setQuestionText] = useState(question.questionText);
-    const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState(question.answer || "");
 
     const handleQuestionChange = (event) => {
         setQuestionText(event.target.value);
