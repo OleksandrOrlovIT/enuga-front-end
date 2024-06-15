@@ -3,11 +3,13 @@ import {
     Container,
     Typography,
     Box,
-    Paper,
+    Paper, Button,
 } from '@mui/material';
 import {AuthContext} from "../auth/AuthContext";
 import LastTestAttemptsList from "../test-stat/english-test/LastTestAttemptsList";
 import LastWordModuleAttemptsList from "../test-stat/word-module/LastWordModuleAttemptsList";
+import Words from "../word/Words";
+import {Link} from "react-router-dom";
 
 const ProfilePage = () => {
     const { user } = useContext(AuthContext);
@@ -23,6 +25,11 @@ const ProfilePage = () => {
                     <Typography variant="body1">
                         Email: {user.email}
                     </Typography>
+                    <Link to={`/profile/edit`} style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" color="primary">
+                            <Words text="Edit Profile" />
+                        </Button>
+                    </Link>
                 </Box>
 
                 {/* Stat Components */}

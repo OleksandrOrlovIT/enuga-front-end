@@ -30,6 +30,7 @@ import AllPublicWordModulesWithoutUser from "./word-module/public/AllPublicWordM
 import AllUserWordModulesPage from "./word-module/user-modules/AllUserWordModulesPage";
 import AllWordModuleStatsPage from "./test-stat/word-module/AllWordModuleStatsPage";
 import UpgradeAccount from "./user/UpgradeAccount";
+import ProfileForm from "./profile/ProfileForm";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -69,6 +70,7 @@ const AppContent = () => {
                     <Route path="/translate-eng" element={<TranslateEnglishPage />} />
                     <Route path="/translate-ukr" element={<TranslateUkrainianPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profile/edit" element={<ProfileForm/>}/>
                 </Route>
 
                 <Route element={<ProtectedRoute notRole="ROLE_USER_WITH_SUBSCRIPTION" />}>
