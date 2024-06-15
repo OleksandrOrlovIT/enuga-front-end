@@ -23,7 +23,6 @@ const LastTestAttemptsList = ({ pageSize, pageNumber, isMinimized }) => {
                     "pageNumber": (pageNumber ? pageNumber - 1 : 0),
                     "pageSize": pageSize
                 });
-                console.log("response.data = ", response.data);
                 setLastStats(response.data.content);
                 setTotalPages(response.data.totalPages);
             } catch (error) {

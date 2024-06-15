@@ -17,7 +17,6 @@ function WordModule() {
     useEffect(() => {
         api.get(`/word-module/${id}`)
             .then(response => {
-                console.log("wordModuleData = ", response.data);
                 setWordModule(response.data);
             })
             .catch(err => console.log(err));

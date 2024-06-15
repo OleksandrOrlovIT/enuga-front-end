@@ -14,7 +14,6 @@ function RulePage() {
     useEffect(() => {
         api.get(`/rule/${id}`)
             .then(response => {
-                console.log(response.data);
                 setRule(response.data);
             })
             .catch(err => console.log(err));

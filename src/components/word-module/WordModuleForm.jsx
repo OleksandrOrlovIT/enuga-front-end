@@ -31,7 +31,7 @@ const WordModuleForm = () => {
                 })
                 .catch(err => console.log(err));
         }
-    }, [id]);
+    }, [navigate, id, user.id]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -64,7 +64,6 @@ const WordModuleForm = () => {
     };
 
     const handleSubmit = () => {
-        console.log("word-module = ", wordModule);
         if (id) {
             api.put(`/word-module/${id}`, wordModule)
                 .then(response => {

@@ -6,7 +6,7 @@ import {AuthContext} from "../auth/AuthContext";
 
 const Header = () => {
     const theme = useTheme();
-    const {logout} = useContext(AuthContext);
+    const {logout, hasRole} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -53,6 +53,13 @@ const Header = () => {
 
                     {/* Right Section */}
                     <Box>
+                        {!hasRole('ROLE_USER_WITH_SUBSCRIPTION') && (
+                            <Link to="/upgrade-account" style={{textDecoration: 'none'}}>
+                                <Button color="white">
+                                    <Words text="Upgrade account"/>
+                                </Button>
+                            </Link>
+                        )}
                         <Link to={`/profile`} style={{textDecoration: 'none'}}>
                             <Button color="white"><Words text="Profile Page"/></Button>
                         </Link>

@@ -29,6 +29,7 @@ import WordModuleForm from "./word-module/WordModuleForm";
 import AllPublicWordModulesWithoutUser from "./word-module/public/AllPublicWordModulesWithoutUser";
 import AllUserWordModulesPage from "./word-module/user-modules/AllUserWordModulesPage";
 import AllWordModuleStatsPage from "./test-stat/word-module/AllWordModuleStatsPage";
+import UpgradeAccount from "./user/UpgradeAccount";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -68,6 +69,10 @@ const AppContent = () => {
                     <Route path="/translate-eng" element={<TranslateEnglishPage />} />
                     <Route path="/translate-ukr" element={<TranslateUkrainianPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute notRole="ROLE_USER_WITH_SUBSCRIPTION" />}>
+                    <Route path="/upgrade-account" element={<UpgradeAccount />} />
                 </Route>
 
                 <Route element={<ProtectedRoute role="ROLE_ENGLISH_TEACHER_USER" />}>
