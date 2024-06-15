@@ -6,7 +6,7 @@ import {AuthContext} from "../auth/AuthContext";
 
 const Header = () => {
     const theme = useTheme();
-    const {logout, hasRole} = useContext(AuthContext);
+    const { logout, hasRole } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -20,7 +20,7 @@ const Header = () => {
                 <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
                     {/* Left Section */}
                     <Box>
-                        <Link to={`/home`} style={{textDecoration: 'none'}}>
+                        <Link to={`/home`} style={{ textDecoration: 'none' }}>
                             <DialogTitle style={{
                                 color: theme.palette.white.main,
                                 marginLeft: 0,
@@ -31,39 +31,43 @@ const Header = () => {
 
                     {/* Middle Section */}
                     <Box display="flex" justifyContent="center" flexGrow={1}>
-                        <Link to={`/rules`} style={{textDecoration: 'none'}}>
-                            <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words text="Rules"/></Button>
+                        <Link to={`/rules`} style={{ textDecoration: 'none', margin: '0 5px' }}>
+                            <Button color="white"><Words text="Rules" /></Button>
                         </Link>
-                        <Link to={`/english-tests`} style={{textDecoration: 'none'}}>
-                            <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words text="Tests"/></Button>
+                        <Link to={`/english-tests`} style={{ textDecoration: 'none', margin: '0 5px' }}>
+                            <Button color="white"><Words text="Tests" /></Button>
                         </Link>
-                        <Link to={`/word-modules`} style={{textDecoration: 'none'}}>
-                            <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words
-                                text="Word Modules"/></Button>
+                        <Link to={`/word-modules`} style={{ textDecoration: 'none', margin: '0 5px' }}>
+                            <Button color="white"><Words text="Word Modules" /></Button>
                         </Link>
-                        <Link to={`/books/`} style={{textDecoration: 'none'}}>
-                            <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words
-                                text="Books"/></Button>
+                        <Link to={`/books/`} style={{ textDecoration: 'none', margin: '0 5px' }}>
+                            <Button color="white"><Words text="Books" /></Button>
                         </Link>
-                        <Link to={`/vocabulary-and-find-words/`} style={{textDecoration: 'none'}}>
-                            <Button color="white" style={{marginLeft: 0, marginRight: 0}}><Words
-                                text="Vocabulary"/></Button>
+                        <Link to={`/vocabulary-and-find-words/`} style={{ textDecoration: 'none', margin: '0 5px' }}>
+                            <Button color="white"><Words text="Vocabulary" /></Button>
                         </Link>
                     </Box>
 
                     {/* Right Section */}
                     <Box>
                         {!hasRole('ROLE_USER_WITH_SUBSCRIPTION') && (
-                            <Link to="/upgrade-account" style={{textDecoration: 'none'}}>
+                            <Link to="/upgrade-account" style={{ textDecoration: 'none' }}>
                                 <Button color="white">
-                                    <Words text="Upgrade account"/>
+                                    <Words text="Upgrade account" />
                                 </Button>
                             </Link>
                         )}
-                        <Link to={`/profile`} style={{textDecoration: 'none'}}>
-                            <Button color="white"><Words text="Profile Page"/></Button>
+                        {hasRole('ROLE_ADMIN') && (
+                            <Link to="/all-users/page/1" style={{ textDecoration: 'none', marginLeft: '10px' }}>
+                                <Button color="white">
+                                    <Words text="All Users" />
+                                </Button>
+                            </Link>
+                        )}
+                        <Link to={`/profile`} style={{ textDecoration: 'none', marginLeft: '10px' }}>
+                            <Button color="white"><Words text="Profile Page" /></Button>
                         </Link>
-                        <Button color="inherit" onClick={handleLogout}><Words text="Leave account"/></Button>
+                        <Button color="inherit" onClick={handleLogout} style={{ marginLeft: '10px' }}><Words text="Leave account" /></Button>
                     </Box>
                 </Box>
             </Toolbar>

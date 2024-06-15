@@ -31,6 +31,8 @@ import AllUserWordModulesPage from "./word-module/user-modules/AllUserWordModule
 import AllWordModuleStatsPage from "./test-stat/word-module/AllWordModuleStatsPage";
 import UpgradeAccount from "./user/UpgradeAccount";
 import ProfileForm from "./profile/ProfileForm";
+import AllUsersPage from "./user/AllUsersPage";
+import EditUserAsAdmin from "./user/EditUserAsAdmin";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -90,6 +92,11 @@ const AppContent = () => {
                 <Route element={<ProtectedRoute role="ROLE_USER_WITH_SUBSCRIPTION" />}>
                     <Route path="/books" element={<AllBookCards />} />
                     <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute role="ROLE_ADMIN" />}>
+                    <Route path="/all-users/page/:pageNumber" element={<AllUsersPage />} />
+                    <Route path="/edit-user/:id" element={<EditUserAsAdmin/>}/>
                 </Route>
             </Routes>
         </>
