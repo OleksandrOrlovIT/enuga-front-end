@@ -33,6 +33,7 @@ import UpgradeAccount from "./user/UpgradeAccount";
 import ProfileForm from "./profile/ProfileForm";
 import AllUsersPage from "./user/AllUsersPage";
 import EditUserAsAdmin from "./user/EditUserAsAdmin";
+import TeacherStudentsPage from "./eng-student/TeacherStudentsPage";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -87,6 +88,8 @@ const AppContent = () => {
 
                     <Route path="/books/create" element={<BookForm />} />
                     <Route path="/books/update/:id" element={<BookForm />} />
+
+                    <Route path="/all-english-students/page/:pageNumber" element={<TeacherStudentsPage />} />
                 </Route>
 
                 <Route element={<ProtectedRoute role="ROLE_USER_WITH_SUBSCRIPTION" />}>
