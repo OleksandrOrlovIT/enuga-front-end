@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../auth/AuthContext";
 import {useParams} from "react-router-dom";
 import api from "../auth/api";
-import AllEnglishStudentsPage from "./AllEnglishStudentsPage";
+import AllEnglishTeachersStudentsPage from "./AllEnglishTeachersStudentsPage";
 
 const TeacherStudentsPage = () => {
     const {user} = useContext(AuthContext);
@@ -23,7 +23,7 @@ const TeacherStudentsPage = () => {
     }, [user.id, pageNumber]);
 
     return (
-        <AllEnglishStudentsPage englishTeacher={englishTeacher} pageNumber={pageNumber}/>
+        <AllEnglishTeachersStudentsPage englishTeacher={englishTeacher} pageNumber={pageNumber}/>
     );
 };
 

@@ -1,56 +1,71 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import api from "../auth/api";
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
-    Box, Button,
-    CircularProgress,
-    Container, PaginationItem,
+    Container,
+    Box,
+    Typography,
     Paper,
-    Table, TableBody, TableCell,
+    Table,
+    TableBody,
+    TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    Typography
-} from "@mui/material";
-import Pagination from "@mui/material/Pagination";
+    Pagination,
+    PaginationItem,
+    CircularProgress,
+    Button
+} from '@mui/material';
+import api from "../../auth/api";
 
-const AllEnglishStudentsPage = ({ pageNumber, englishTeacher }) => {
-    const [englishStudents, setEnglishStudents] = useState([]);
+const AllEnglishTeachers = () => {
+    const { pageNumber } = useParams();
+    const [englishTeachers, setEnglishTeachers] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchEnglishStudents = async (page) => {
+        const fetchEnglishTeachers = async (page) => {
+            setLoading(true);
             try {
-                setLoading(true);
-                if (!englishTeacher.id) return;
-                const response = await api.post('/english-student/by-teacher', {
-                    englishTeacherId: englishTeacher.id,
+                const response = await api.post('/english-teachers/page', {
                     pageNumber: page - 1,
                     pageSize: 10
                 });
-                setEnglishStudents(response.data.content);
+                setEnglishTeachers(response.data.content);
                 setTotalPages(response.data.totalPages);
             } catch (error) {
-                console.error('Error fetching englishStudents:', error);
-            } finally {
-                setLoading(false);
+                console.error('Error fetching englishTeachers:', error);
             }
+            setLoading(false);
         };
 
-        fetchEnglishStudents(Number(pageNumber) || 1);
-    }, [pageNumber, englishTeacher.id]);
+        fetchEnglishTeachers(Number(pageNumber) || 1);
+    }, [pageNumber]);
 
     const handlePageChange = (event, value) => {
-        navigate(`/all-english-students/page/${value}`);
+        navigate(`/all-english-teachers/page/${value}`);
+    };
+
+    const handleEdit = (englishTeacher) => {
+        navigate(`/edit-english-teacher/${englishTeacher.id}`);
+    };
+
+    const handleDelete = async (englishTeacherId) => {
+        try {
+            await api.delete(`/english-teacher/${englishTeacherId}`);
+            setEnglishTeachers(englishTeachers.filter(user => user.id !== englishTeacherId));
+        } catch (error) {
+            console.error('Error deleting english teacher:', error);
+        }
     };
 
     return (
         <Container maxWidth="lg">
             <Box mt={4}>
                 <Typography variant="h4" component="h1" gutterBottom>
-                    All Users
+                    All English Teachers
                 </Typography>
                 {loading ? (
                     <CircularProgress />
@@ -60,8 +75,8 @@ const AllEnglishStudentsPage = ({ pageNumber, englishTeacher }) => {
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>English Student ID</TableCell>
-                                        <TableCell>User ID</TableCell>
+                                        <TableCell>English Teacher ID</TableCell>
+                                        <TableCell>ID</TableCell>
                                         <TableCell>Email</TableCell>
                                         <TableCell>First Name</TableCell>
                                         <TableCell>Last Name</TableCell>
@@ -69,30 +84,28 @@ const AllEnglishStudentsPage = ({ pageNumber, englishTeacher }) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {englishStudents.map((englishStudent) => (
-                                        <TableRow key={englishStudent.id}>
-                                            <TableCell>{englishStudent.id}</TableCell>
-                                            <TableCell>{englishStudent.user.id}</TableCell>
-                                            <TableCell>{englishStudent.user.email}</TableCell>
-                                            <TableCell>{englishStudent.user.firstName}</TableCell>
-                                            <TableCell>{englishStudent.user.lastName}</TableCell>
+                                    {englishTeachers.map((englishTeacher) => (
+                                        <TableRow key={englishTeacher.id}>
+                                            <TableCell>{englishTeacher.user.id}</TableCell>
+                                            <TableCell>{englishTeacher.user.id}</TableCell>
+                                            <TableCell>{englishTeacher.user.email}</TableCell>
+                                            <TableCell>{englishTeacher.user.firstName}</TableCell>
+                                            <TableCell>{englishTeacher.user.lastName}</TableCell>
                                             <TableCell>
                                                 <Button
                                                     variant="contained"
                                                     color="primary"
-                                                    component={Link}
-                                                    to={`/english-tests/stats/eng-teacher/${englishTeacher.id}/eng-student/${englishStudent.id}/1`}
-                                                    style={{ marginRight: '10px' }}
+                                                    onClick={() => handleEdit(englishTeacher)}
+                                                    style={{ marginRight: '8px' }}
                                                 >
-                                                    Test Stats
+                                                    Edit
                                                 </Button>
                                                 <Button
                                                     variant="contained"
                                                     color="secondary"
-                                                    component={Link}
-                                                    to={`/word-modules/stats/eng-teacher/${englishTeacher.id}/eng-student/${englishStudent.id}/1`}
+                                                    onClick={() => handleDelete(englishTeacher.id)}
                                                 >
-                                                    Word Module Stats
+                                                    Delete
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
@@ -109,7 +122,7 @@ const AllEnglishStudentsPage = ({ pageNumber, englishTeacher }) => {
                     renderItem={(item) => (
                         <PaginationItem
                             component={Link}
-                            to={`/all-english-students/page/${item.page}`}
+                            to={`/all-english-teachers/page/${item.page}`}
                             {...item}
                         />
                     )}
@@ -122,4 +135,4 @@ const AllEnglishStudentsPage = ({ pageNumber, englishTeacher }) => {
     );
 };
 
-export default AllEnglishStudentsPage;
+export default AllEnglishTeachers;

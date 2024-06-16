@@ -65,6 +65,13 @@ const Header = () => {
                             </Link>
                         )}
                         {hasRole('ROLE_ADMIN') && (
+                            <Link to="/all-english-teachers/page/1" style={{ textDecoration: 'none', marginLeft: '10px' }}>
+                                <Button color="white">
+                                    <Words text="All English Teachers" />
+                                </Button>
+                            </Link>
+                        )}
+                        {hasRole('ROLE_ADMIN') && (
                             <Link to="/all-users/page/1" style={{ textDecoration: 'none', marginLeft: '10px' }}>
                                 <Button color="white">
                                     <Words text="All Users" />

@@ -25,8 +25,6 @@ const EditUserAsAdmin = () => {
         getUser();
     }, [id]);
 
-    console.log("user ", user);
-
     if (loading) {
         return <p>Loading...</p>;
     }

@@ -36,6 +36,8 @@ import EditUserAsAdmin from "./user/EditUserAsAdmin";
 import TeacherStudentsPage from "./eng-student/TeacherStudentsPage";
 import LastStudentTestAttemptsList from "./eng-student/LastStudentTestAttemptsList";
 import LastStudentWordModuleAttemptsList from "./eng-student/LastStudentWordModuleAttemptsList";
+import AllEnglishTeachers from "./user/eng-teacher/AllEnglishTeachers";
+import EditEnglishTeacher from "./user/eng-teacher/EditEnglishTeacher";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -103,6 +105,9 @@ const AppContent = () => {
                 <Route element={<ProtectedRoute role="ROLE_ADMIN" />}>
                     <Route path="/all-users/page/:pageNumber" element={<AllUsersPage />} />
                     <Route path="/edit-user/:id" element={<EditUserAsAdmin/>}/>
+
+                    <Route path="/all-english-teachers/page/:pageNumber" element={<AllEnglishTeachers />} />
+                    <Route path="/edit-english-teacher/:englishTeacherId" element={<EditEnglishTeacher/>}/>
                 </Route>
             </Routes>
         </>
