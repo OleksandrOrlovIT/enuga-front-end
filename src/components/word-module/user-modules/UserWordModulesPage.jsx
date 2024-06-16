@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../auth/AuthContext";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import api from "../../auth/api";
-import {Box, Button, CircularProgress, Container, Grid, PaginationItem, Paper, Typography} from "@mui/material";
+import {Box, Button, CircularProgress, Grid, PaginationItem, Typography} from "@mui/material";
 import WordModuleCard from "../WordModuleCard";
 import Pagination from "@mui/material/Pagination";
 import Words from "../../word/Words";
