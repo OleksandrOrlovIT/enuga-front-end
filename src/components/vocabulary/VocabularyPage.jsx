@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, PaginationItem } from '@mui/material';
+import { Container, PaginationItem, Button } from '@mui/material';
 import { Link, useParams } from "react-router-dom";
 import TranslationTable from './TranslationTable';
 import Pagination from "@mui/material/Pagination";
@@ -36,10 +36,18 @@ function VocabularyPage() {
 
     return (
         <Container>
-            <TranslationTable data={words}/>
+            <Button
+                variant="contained"
+                component={Link}
+                to="/vocabulary/create-translation"
+                style={{ marginLeft: '950px', marginBottom: '20px', marginTop: '20px' }}
+            >
+                Create Translation
+            </Button>
+            <TranslationTable data={words} />
             <div>
                 <Pagination
-                    count={totalPages}
+                    count={totalPages - 1}
                     page={parseInt(page)}
                     onChange={handleChangePage}
                     renderItem={(item) => (

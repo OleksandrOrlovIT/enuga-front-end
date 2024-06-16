@@ -43,6 +43,7 @@ import LoadEnglishTeacherToEdit from "./user/eng-teacher/LoadEnglishTeacherToEdi
 import AllEnglishStudents from "./user/eng-student/AllEnglishStudents";
 import LoadEnglishStudentToEdit from "./user/eng-student/LoadEnglishStudentToEdit";
 import CreateEnglishStudent from "./user/eng-student/CreateEnglishStudent";
+import CreateTranslation from "./vocabulary/CreateTranslation";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -99,6 +100,8 @@ const AppContent = () => {
 
                     <Route path="/books/create" element={<BookForm />} />
                     <Route path="/books/update/:id" element={<BookForm />} />
+
+                    <Route path="/vocabulary/create-translation" element={<CreateTranslation />} />
 
                     <Route path="/all-english-students/page/:pageNumber" element={<TeacherStudentsPage />} />
                     <Route path="/english-tests/stats/eng-teacher/:englishTeacherId/eng-student/:englishStudentId/:pageNumber"

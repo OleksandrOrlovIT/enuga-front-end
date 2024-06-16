@@ -5,13 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        setUser(null);
-    };
+    const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -37,10 +31,16 @@ export const AuthProvider = ({ children }) => {
                 console.error('Invalid token', error);
                 logout();
             }
-        } else {
-            setLoading(false);
         }
+
+        setLoading(false);
     }, []);
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setUser(null);
+    };
 
     const login = (token, user) => {
         localStorage.setItem('token', token);

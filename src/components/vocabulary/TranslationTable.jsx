@@ -1,16 +1,31 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
+    TableContainer,
     Paper,
     Table,
-    TableBody,
-    TableCell,
-    TableContainer,
     TableHead,
     TableRow,
-    Typography
-} from "@mui/material";
+    TableCell,
+    TableBody,
+    Typography,
+    Button
+} from '@mui/material';
+import api from "../auth/api";
+import {AuthContext} from "../auth/AuthContext";
 
 function TranslationTable({data}) {
+    const {hasRole} = useContext(AuthContext);
+
+    const handleButtonClick = async (pairId) => {
+        try {
+            await api.delete(`/translation-pair/${pairId}`);
+        } catch (error) {
+            console.error('Error deleting translation pair:', error);
+        } finally {
+            window.location.reload();
+        }
+    };
+
     return (
         <div>
             <TableContainer component={Paper}>
@@ -21,6 +36,9 @@ function TranslationTable({data}) {
                                 Word</TableCell>
                             <TableCell variant="head" sx={{fontWeight: 'bold', fontSize: '24px'}}>Ukrainian
                                 Word</TableCell>
+                            {hasRole("ROLE_ENGLISH_TEACHER_USER") &&
+                                <TableCell variant="head" sx={{fontWeight: 'bold', fontSize: '24px'}}>Delete</TableCell>
+                            }
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -35,6 +53,17 @@ function TranslationTable({data}) {
                                     <Typography>
                                         {pair.ukrainianWord.word}
                                     </Typography>
+                                </TableCell>
+                                <TableCell>
+                                    {hasRole("ROLE_ENGLISH_TEACHER_USER") &&
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() => handleButtonClick(pair.id)}
+                                        >
+                                            Delete
+                                        </Button>
+                                    }
                                 </TableCell>
                             </TableRow>
                         ))}
