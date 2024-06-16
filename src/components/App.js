@@ -40,6 +40,9 @@ import AllEnglishTeachers from "./user/eng-teacher/AllEnglishTeachers";
 import CreateUserAsAdmin from "./user/CreateUserAsAdmin";
 import CreateEnglishTeacher from "./user/eng-teacher/CreateEnglishTeacher";
 import LoadEnglishTeacherToEdit from "./user/eng-teacher/LoadEnglishTeacherToEdit";
+import AllEnglishStudents from "./user/eng-student/AllEnglishStudents";
+import LoadEnglishStudentToEdit from "./user/eng-student/LoadEnglishStudentToEdit";
+import CreateEnglishStudent from "./user/eng-student/CreateEnglishStudent";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -112,6 +115,10 @@ const AppContent = () => {
                     <Route path="/admin/all-english-teachers/page/:pageNumber" element={<AllEnglishTeachers />} />
                     <Route path="/admin/edit-english-teacher/:englishTeacherId" element={<LoadEnglishTeacherToEdit/>}/>
                     <Route path="/admin/create-english-teacher" element={<CreateEnglishTeacher/>}/>
+
+                    <Route path="/admin/all-english-students/page/:pageNumber" element={<AllEnglishStudents />} />
+                    <Route path="/admin/edit-english-student/:englishStudentId" element={<LoadEnglishStudentToEdit/>}/>
+                    <Route path="/admin/create-english-student" element={<CreateEnglishStudent/>}/>
                 </Route>
             </Routes>
         </>

@@ -15,7 +15,7 @@ const LoadEnglishTeacherToEdit = () => {
                 const response = await api.get(`/english-teacher/${englishTeacherId}`);
                 setEnglishTeacher(response.data);
             } catch (error) {
-                console.error('Error fetching user:', error);
+                console.error('Error fetching english teacher:', error);
             } finally {
                 setLoading(false);
             }
