@@ -45,11 +45,11 @@ const AllEnglishTeachers = () => {
     }, [pageNumber]);
 
     const handlePageChange = (event, value) => {
-        navigate(`/all-english-teachers/page/${value}`);
+        navigate(`/admin/all-english-teachers/page/${value}`);
     };
 
     const handleEdit = (englishTeacher) => {
-        navigate(`/edit-english-teacher/${englishTeacher.id}`);
+        navigate(`/admin/edit-english-teacher/${englishTeacher.id}`);
     };
 
     const handleDelete = async (englishTeacherId) => {
@@ -122,7 +122,7 @@ const AllEnglishTeachers = () => {
                     renderItem={(item) => (
                         <PaginationItem
                             component={Link}
-                            to={`/all-english-teachers/page/${item.page}`}
+                            to={`/admin/all-english-teachers/page/${item.page}`}
                             {...item}
                         />
                     )}

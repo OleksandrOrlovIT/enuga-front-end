@@ -32,7 +32,6 @@ const EditUser = ({user, onSuccess}) => {
         e.preventDefault();
 
         const updatedUser = {
-            id: user.id,
             email,
             firstName,
             lastName,
@@ -41,10 +40,15 @@ const EditUser = ({user, onSuccess}) => {
         };
 
         try {
-            if(!hasRole("ROLE_ADMIN")) {
-                await api.put(`/user/${user.id}/without-roles`, updatedUser);
+            if (user.id) {
+                updatedUser.id = user.id;
+                if (!hasRole("ROLE_ADMIN")) {
+                    await api.put(`/user/${user.id}/without-roles`, updatedUser);
+                } else {
+                    await api.put(`/user/${user.id}`, updatedUser);
+                }
             } else {
-                await api.put(`/user/${user.id}`, updatedUser);
+                await api.post(`/user`, updatedUser);
             }
             onSuccess();
         } catch (error) {
@@ -63,7 +67,7 @@ const EditUser = ({user, onSuccess}) => {
                     Edit Profile
                 </Typography>
                 <form onSubmit={handleSubmit}>
-                    <TextField
+                    {user.id && <TextField
                         fullWidth
                         label="User ID"
                         value={user.id}
@@ -72,7 +76,7 @@ const EditUser = ({user, onSuccess}) => {
                             readOnly: true,
                         }}
                         variant="outlined"
-                    />
+                    />}
                     <TextField
                         fullWidth
                         label="Email"
@@ -132,7 +136,7 @@ const EditUser = ({user, onSuccess}) => {
                     }
                     <Box mt={2}>
                         <Button type="submit" variant="contained" color="primary" fullWidth>
-                            Update Profile
+                            {user.Id ? "Update Profile" : "Create User"}
                         </Button>
                     </Box>
                 </form>

@@ -38,6 +38,7 @@ import LastStudentTestAttemptsList from "./eng-student/LastStudentTestAttemptsLi
 import LastStudentWordModuleAttemptsList from "./eng-student/LastStudentWordModuleAttemptsList";
 import AllEnglishTeachers from "./user/eng-teacher/AllEnglishTeachers";
 import EditEnglishTeacher from "./user/eng-teacher/EditEnglishTeacher";
+import CreateUserAsAdmin from "./user/CreateUserAsAdmin";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -103,11 +104,12 @@ const AppContent = () => {
                 </Route>
 
                 <Route element={<ProtectedRoute role="ROLE_ADMIN" />}>
-                    <Route path="/all-users/page/:pageNumber" element={<AllUsersPage />} />
-                    <Route path="/edit-user/:id" element={<EditUserAsAdmin/>}/>
+                    <Route path="/admin/all-users/page/:pageNumber" element={<AllUsersPage />} />
+                    <Route path="/admin/edit-user/:id" element={<EditUserAsAdmin/>}/>
+                    <Route path="/admin/create-user/" element={<CreateUserAsAdmin/>}/>
 
-                    <Route path="/all-english-teachers/page/:pageNumber" element={<AllEnglishTeachers />} />
-                    <Route path="/edit-english-teacher/:englishTeacherId" element={<EditEnglishTeacher/>}/>
+                    <Route path="/admin/all-english-teachers/page/:pageNumber" element={<AllEnglishTeachers />} />
+                    <Route path="/admin/edit-english-teacher/:englishTeacherId" element={<EditEnglishTeacher/>}/>
                 </Route>
             </Routes>
         </>

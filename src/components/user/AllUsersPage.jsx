@@ -45,11 +45,11 @@ const AllUsersPage = () => {
     }, [pageNumber]);
 
     const handlePageChange = (event, value) => {
-        navigate(`/all-users/page/${value}`);
+        navigate(`/admin/all-users/page/${value}`);
     };
 
     const handleEdit = (user) => {
-        navigate(`/edit-user/${user.id}`);
+        navigate(`/admin/edit-user/${user.id}`);
     };
 
     const handleDelete = async (userId) => {
@@ -63,72 +63,79 @@ const AllUsersPage = () => {
 
     return (
         <Container maxWidth="lg">
-            <Box mt={4}>
+            <Box mt={4} display="flex" justifyContent="space-between" alignItems="center">
                 <Typography variant="h4" component="h1" gutterBottom>
                     All Users
                 </Typography>
-                {loading ? (
-                    <CircularProgress />
-                ) : (
-                    <Paper elevation={3}>
-                        <TableContainer>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>ID</TableCell>
-                                        <TableCell>Email</TableCell>
-                                        <TableCell>First Name</TableCell>
-                                        <TableCell>Last Name</TableCell>
-                                        <TableCell>Actions</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {users.map((user) => (
-                                        <TableRow key={user.id}>
-                                            <TableCell>{user.id}</TableCell>
-                                            <TableCell>{user.email}</TableCell>
-                                            <TableCell>{user.firstName}</TableCell>
-                                            <TableCell>{user.lastName}</TableCell>
-                                            <TableCell>
-                                                <Button
-                                                    variant="contained"
-                                                    color="primary"
-                                                    onClick={() => handleEdit(user)}
-                                                    style={{ marginRight: '8px' }}
-                                                >
-                                                    Edit
-                                                </Button>
-                                                <Button
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={() => handleDelete(user.id)}
-                                                >
-                                                    Delete
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
-                )}
-                <Pagination
-                    count={totalPages}
-                    page={Number(pageNumber) || 1}
-                    onChange={handlePageChange}
-                    renderItem={(item) => (
-                        <PaginationItem
-                            component={Link}
-                            to={`/all-users/page/${item.page}`}
-                            {...item}
-                        />
-                    )}
-                    boundaryCount={1}
-                    siblingCount={2}
-                    style={{ marginTop: '20px', alignSelf: 'center' }}
-                />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => navigate('/admin/create-user')}
+                >
+                    Create New User
+                </Button>
             </Box>
+            {loading ? (
+                <CircularProgress />
+            ) : (
+                <Paper elevation={3}>
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>ID</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>First Name</TableCell>
+                                    <TableCell>Last Name</TableCell>
+                                    <TableCell>Actions</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {users.map((user) => (
+                                    <TableRow key={user.id}>
+                                        <TableCell>{user.id}</TableCell>
+                                        <TableCell>{user.email}</TableCell>
+                                        <TableCell>{user.firstName}</TableCell>
+                                        <TableCell>{user.lastName}</TableCell>
+                                        <TableCell>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={() => handleEdit(user)}
+                                                style={{ marginRight: '8px' }}
+                                            >
+                                                Edit
+                                            </Button>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={() => handleDelete(user.id)}
+                                            >
+                                                Delete
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+            )}
+            <Pagination
+                count={totalPages}
+                page={Number(pageNumber) || 1}
+                onChange={handlePageChange}
+                renderItem={(item) => (
+                    <PaginationItem
+                        component={Link}
+                        to={`/admin/all-users/page/${item.page}`}
+                        {...item}
+                    />
+                )}
+                boundaryCount={1}
+                siblingCount={2}
+                style={{ marginTop: '20px', alignSelf: 'center' }}
+            />
         </Container>
     );
 };
