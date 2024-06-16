@@ -21,7 +21,7 @@ function EnglishTestCard({ wordModule, userId, onDelete }) {
                 const lastResponse = await api.post('/word-module-attempts/user/stats-last', request);
 
                 const formattedLastTryPercentage = lastResponse.data.successPercentage ?
-                    lastResponse.data.successPercentage.toFixed(2) : 0;
+                    lastResponse.data.successPercentage.toFixed(2) : formattedBestTryPercentage;
 
                 setLastTryPercentage(formattedLastTryPercentage);
             } catch (error) {
