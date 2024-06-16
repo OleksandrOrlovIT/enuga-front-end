@@ -6,7 +6,7 @@ import {AuthContext} from "../auth/AuthContext";
 
 const Header = () => {
     const theme = useTheme();
-    const { logout, hasRole } = useContext(AuthContext);
+    const { logout, hasRole, notRole } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -57,7 +57,7 @@ const Header = () => {
                                 </Button>
                             </Link>
                         )}
-                        {hasRole('ROLE_ENGLISH_TEACHER_USER') && (
+                        {hasRole('ROLE_ENGLISH_TEACHER_USER') && notRole('ROLE_ADMIN') &&  (
                             <Link to="/all-english-students/page/1" style={{ textDecoration: 'none', marginLeft: '10px' }}>
                                 <Button color="white">
                                     <Words text="Your English Students" />

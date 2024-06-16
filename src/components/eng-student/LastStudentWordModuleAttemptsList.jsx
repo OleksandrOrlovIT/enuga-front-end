@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import api from "../auth/api";
 import {Box, CircularProgress, List, PaginationItem, Paper, Typography} from "@mui/material";
-import TestStatListItem from "../test-stat/english-test/TestStatListItem";
 import Pagination from "@mui/material/Pagination";
+import WordModuleStatListItem from "../test-stat/word-module/WordModuleStatListItem";
 
 const LastStudentWordModuleAttemptsList = () => {
     const { englishTeacherId, englishStudentId, pageNumber } = useParams();
@@ -54,7 +54,7 @@ const LastStudentWordModuleAttemptsList = () => {
                 ) : (
                     <List sx={{ width: '100%' }}>
                         {lastStats.map((stat, index) => (
-                            <TestStatListItem key={index} testAttempt={stat} />
+                            <WordModuleStatListItem key={index} testAttempt={stat} />
                         ))}
                     </List>
                 )}

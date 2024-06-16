@@ -35,8 +35,12 @@ export const AuthProvider = ({ children }) => {
         return user && user.roles.includes(requiredRole);
     };
 
+    const notRole = (requiredRole) => {
+        return user && !user.roles.includes(requiredRole);
+    }
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, hasRole, isLogged, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, hasRole, isLogged, notRole, loading }}>
             {children}
         </AuthContext.Provider>
     );
