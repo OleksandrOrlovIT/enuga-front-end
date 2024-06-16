@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import api from "../../auth/api";
 import {
     Box,
@@ -8,46 +8,27 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import {useNavigate, useParams} from "react-router-dom";
 
-const EditEnglishTeacher = () => {
-    const { englishTeacherId } = useParams();
-    const [englishTeacher, setEnglishTeacher] = useState({});
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const getEnglishTeacher = async () => {
-            try {
-                const response = await api.get(`/english-teacher/${englishTeacherId}`);
-                setEnglishTeacher(response.data);
-            } catch (error) {
-                console.error('Error fetching user:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        getEnglishTeacher();
-    }, [englishTeacherId]);
-
-    if (loading) {
-        return <p>Loading...</p>;
-    }
+const EditEnglishTeacher = ({englishTeacher, onSuccess}) => {
+    const [userId, setUserId] = useState(englishTeacher.user.id);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const updatedEnglishTeacher = {
-            "englishTeacherId": englishTeacherId,
-            "userId": englishTeacher.user.id
+            "userId": userId
         };
 
         try {
-            await api.put(`english-teacher/${englishTeacherId}`, updatedEnglishTeacher);
-            navigate("/all-english-teachers/page/1");
+            if(englishTeacher.id) {
+                updatedEnglishTeacher.englishTeacherId = englishTeacher.id;
+                await api.put(`/english-teacher`, updatedEnglishTeacher);
+            } else {
+                await api.post(`/english-teacher`, updatedEnglishTeacher);
+            }
+            onSuccess();
         } catch (error) {
-            console.error('Error updating english teacher:', error);
+            console.error('Error updating English teacher:', error);
         }
     };
 
@@ -55,29 +36,32 @@ const EditEnglishTeacher = () => {
         <Container maxWidth="sm">
             <Paper elevation={3} style={{padding: '20px'}}>
                 <Typography variant="h4" component="h1" gutterBottom>
-                    Edit English Teacher
+                    {englishTeacher.id ? "Edit " : "Create "} English Teacher
                 </Typography>
                 <form onSubmit={handleSubmit}>
-                    <TextField
-                        fullWidth
-                        label="English Teacher ID"
-                        value={englishTeacher.id}
-                        margin="normal"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                        variant="outlined"
-                    />
+                    {englishTeacher.id && (
+                        <TextField
+                            fullWidth
+                            label="English Teacher ID"
+                            value={englishTeacher.id}
+                            margin="normal"
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                            variant="outlined"
+                        />
+                    )}
                     <TextField
                         fullWidth
                         label="User ID"
-                        value={englishTeacher.user.id}
+                        value={userId}
+                        onChange={(e) => setUserId(e.target.value)}
                         margin="normal"
                         variant="outlined"
                     />
                     <Box mt={2}>
                         <Button type="submit" variant="contained" color="primary" fullWidth>
-                            Update English Teacher
+                            {englishTeacher.id ? "Update " : "Create "} English Teacher
                         </Button>
                     </Box>
                 </form>

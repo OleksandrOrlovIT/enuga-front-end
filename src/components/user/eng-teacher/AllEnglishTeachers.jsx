@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useParams, Link, useNavigate} from 'react-router-dom';
 import {
     Container,
     Box,
@@ -19,7 +19,7 @@ import {
 import api from "../../auth/api";
 
 const AllEnglishTeachers = () => {
-    const { pageNumber } = useParams();
+    const {pageNumber} = useParams();
     const [englishTeachers, setEnglishTeachers] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
@@ -63,74 +63,81 @@ const AllEnglishTeachers = () => {
 
     return (
         <Container maxWidth="lg">
-            <Box mt={4}>
+            <Box mt={4} display="flex" justifyContent="space-between" alignItems="center">
                 <Typography variant="h4" component="h1" gutterBottom>
                     All English Teachers
                 </Typography>
-                {loading ? (
-                    <CircularProgress />
-                ) : (
-                    <Paper elevation={3}>
-                        <TableContainer>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>English Teacher ID</TableCell>
-                                        <TableCell>ID</TableCell>
-                                        <TableCell>Email</TableCell>
-                                        <TableCell>First Name</TableCell>
-                                        <TableCell>Last Name</TableCell>
-                                        <TableCell>Actions</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {englishTeachers.map((englishTeacher) => (
-                                        <TableRow key={englishTeacher.id}>
-                                            <TableCell>{englishTeacher.user.id}</TableCell>
-                                            <TableCell>{englishTeacher.user.id}</TableCell>
-                                            <TableCell>{englishTeacher.user.email}</TableCell>
-                                            <TableCell>{englishTeacher.user.firstName}</TableCell>
-                                            <TableCell>{englishTeacher.user.lastName}</TableCell>
-                                            <TableCell>
-                                                <Button
-                                                    variant="contained"
-                                                    color="primary"
-                                                    onClick={() => handleEdit(englishTeacher)}
-                                                    style={{ marginRight: '8px' }}
-                                                >
-                                                    Edit
-                                                </Button>
-                                                <Button
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={() => handleDelete(englishTeacher.id)}
-                                                >
-                                                    Delete
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
-                )}
-                <Pagination
-                    count={totalPages}
-                    page={Number(pageNumber) || 1}
-                    onChange={handlePageChange}
-                    renderItem={(item) => (
-                        <PaginationItem
-                            component={Link}
-                            to={`/admin/all-english-teachers/page/${item.page}`}
-                            {...item}
-                        />
-                    )}
-                    boundaryCount={1}
-                    siblingCount={2}
-                    style={{ marginTop: '20px', alignSelf: 'center' }}
-                />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => navigate('/admin/create-english-teacher')}
+                >
+                    Create New English Teacher
+                </Button>
             </Box>
+            {loading ? (
+                <CircularProgress/>
+            ) : (
+                <Paper elevation={3}>
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>English Teacher ID</TableCell>
+                                    <TableCell>ID</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>First Name</TableCell>
+                                    <TableCell>Last Name</TableCell>
+                                    <TableCell>Actions</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {englishTeachers.map((englishTeacher) => (
+                                    <TableRow key={englishTeacher.id}>
+                                        <TableCell>{englishTeacher.id}</TableCell>
+                                        <TableCell>{englishTeacher.user.id}</TableCell>
+                                        <TableCell>{englishTeacher.user.email}</TableCell>
+                                        <TableCell>{englishTeacher.user.firstName}</TableCell>
+                                        <TableCell>{englishTeacher.user.lastName}</TableCell>
+                                        <TableCell>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={() => handleEdit(englishTeacher)}
+                                                style={{marginRight: '8px'}}
+                                            >
+                                                Edit
+                                            </Button>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={() => handleDelete(englishTeacher.id)}
+                                            >
+                                                Delete
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+            )}
+            <Pagination
+                count={totalPages}
+                page={Number(pageNumber) || 1}
+                onChange={handlePageChange}
+                renderItem={(item) => (
+                    <PaginationItem
+                        component={Link}
+                        to={`/admin/all-english-teachers/page/${item.page}`}
+                        {...item}
+                    />
+                )}
+                boundaryCount={1}
+                siblingCount={2}
+                style={{marginTop: '20px', alignSelf: 'center'}}
+            />
         </Container>
     );
 };

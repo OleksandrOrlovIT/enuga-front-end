@@ -29,7 +29,7 @@ const EditUserAsAdmin = () => {
         return <p>Loading...</p>;
     }
 
-    return <EditUser user={user} onSuccess={() => navigate("/all-users/page/1")} />;
+    return <EditUser user={user} onSuccess={() => navigate("/admin/all-users/page/1")} />;
 };
 
 export default EditUserAsAdmin;

@@ -13,7 +13,7 @@ const CreateUserAsAdmin = () => {
         roles : []
     }
 
-    return <EditUser user={user} onSuccess={() => navigate("admin/all-users/page/1")} />;
+    return <EditUser user={user} onSuccess={() => navigate("/admin/all-users/page/1")} />;
 };
 
 export default CreateUserAsAdmin;
