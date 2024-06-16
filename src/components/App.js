@@ -34,6 +34,8 @@ import ProfileForm from "./profile/ProfileForm";
 import AllUsersPage from "./user/AllUsersPage";
 import EditUserAsAdmin from "./user/EditUserAsAdmin";
 import TeacherStudentsPage from "./eng-student/TeacherStudentsPage";
+import LastStudentTestAttemptsList from "./eng-student/LastStudentTestAttemptsList";
+import LastStudentWordModuleAttemptsList from "./eng-student/LastStudentWordModuleAttemptsList";
 
 const AppContent = () => {
     const {user, loading} = useContext(AuthContext);
@@ -78,6 +80,8 @@ const AppContent = () => {
 
                 <Route element={<ProtectedRoute notRole="ROLE_USER_WITH_SUBSCRIPTION" />}>
                     <Route path="/upgrade-account" element={<UpgradeAccount />} />
+                    <Route path="/books" element={<AllBookCards />} />
+                    <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage />} />
                 </Route>
 
                 <Route element={<ProtectedRoute role="ROLE_ENGLISH_TEACHER_USER" />}>
@@ -90,11 +94,10 @@ const AppContent = () => {
                     <Route path="/books/update/:id" element={<BookForm />} />
 
                     <Route path="/all-english-students/page/:pageNumber" element={<TeacherStudentsPage />} />
-                </Route>
-
-                <Route element={<ProtectedRoute role="ROLE_USER_WITH_SUBSCRIPTION" />}>
-                    <Route path="/books" element={<AllBookCards />} />
-                    <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage />} />
+                    <Route path="/english-tests/stats/eng-teacher/:englishTeacherId/eng-student/:englishStudentId/:pageNumber"
+                           element={<LastStudentTestAttemptsList/>}/>
+                    <Route path="/word-modules/stats/eng-teacher/:englishTeacherId/eng-student/:englishStudentId/:pageNumber"
+                           element={<LastStudentWordModuleAttemptsList/>}/>
                 </Route>
 
                 <Route element={<ProtectedRoute role="ROLE_ADMIN" />}>

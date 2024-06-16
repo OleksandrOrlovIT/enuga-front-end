@@ -1,10 +1,10 @@
-import {Link, useNavigate} from "react-router-dom";
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import api from "../auth/api";
 import {
-    Box,
+    Box, Button,
     CircularProgress,
-    Container, Pagination, PaginationItem,
+    Container, PaginationItem,
     Paper,
     Table, TableBody, TableCell,
     TableContainer,
@@ -12,15 +12,15 @@ import {
     TableRow,
     Typography
 } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
 
-const AllEnglishStudentsPage = ({pageNumber, englishTeacher}) => {
+const AllEnglishStudentsPage = ({ pageNumber, englishTeacher }) => {
     const [englishStudents, setEnglishStudents] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-
         const fetchEnglishStudents = async (page) => {
             try {
                 setLoading(true);
@@ -53,26 +53,48 @@ const AllEnglishStudentsPage = ({pageNumber, englishTeacher}) => {
                     All Users
                 </Typography>
                 {loading ? (
-                    <CircularProgress/>
+                    <CircularProgress />
                 ) : (
                     <Paper elevation={3}>
                         <TableContainer>
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>ID</TableCell>
+                                        <TableCell>English Student ID</TableCell>
+                                        <TableCell>User ID</TableCell>
                                         <TableCell>Email</TableCell>
                                         <TableCell>First Name</TableCell>
                                         <TableCell>Last Name</TableCell>
+                                        <TableCell>Actions</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {englishStudents.map((englishStudent) => (
-                                        <TableRow key={englishStudent.user.id}>
+                                        <TableRow key={englishStudent.id}>
+                                            <TableCell>{englishStudent.id}</TableCell>
                                             <TableCell>{englishStudent.user.id}</TableCell>
                                             <TableCell>{englishStudent.user.email}</TableCell>
                                             <TableCell>{englishStudent.user.firstName}</TableCell>
                                             <TableCell>{englishStudent.user.lastName}</TableCell>
+                                            <TableCell>
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    component={Link}
+                                                    to={`/english-tests/stats/eng-teacher/${englishTeacher.id}/eng-student/${englishStudent.id}/1`}
+                                                    style={{ marginRight: '10px' }}
+                                                >
+                                                    Test Stats
+                                                </Button>
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    component={Link}
+                                                    to={`/word-modules/stats/eng-teacher/${englishTeacher.id}/eng-student/${englishStudent.id}/1`}
+                                                >
+                                                    Word Module Stats
+                                                </Button>
+                                            </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -93,7 +115,7 @@ const AllEnglishStudentsPage = ({pageNumber, englishTeacher}) => {
                     )}
                     boundaryCount={1}
                     siblingCount={2}
-                    style={{marginTop: '20px', alignSelf: 'center'}}
+                    style={{ marginTop: '20px', alignSelf: 'center' }}
                 />
             </Box>
         </Container>
