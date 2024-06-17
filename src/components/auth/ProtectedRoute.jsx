@@ -17,7 +17,7 @@ const ProtectedRoute = ({ role, notRole }) => {
         return <Navigate to="/home" replace />;
     }
 
-    if (notRole && !notRole(role)) {
+    if (role && !notRole(role)) {
         return <Navigate to="/home" replace />;
     }
 
