@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AuthContext } from "./AuthContext";
 
-const ProtectedRoute = ({ role, notRole }) => {
-    const { isLogged, hasRole, loading } = useContext(AuthContext);
+const ProtectedRoute = ({ role, notPassedRole }) => {
+    const { isLogged, hasRole, loading, notRole } = useContext(AuthContext);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -17,7 +17,7 @@ const ProtectedRoute = ({ role, notRole }) => {
         return <Navigate to="/home" replace />;
     }
 
-    if (role && !notRole(role)) {
+    if (role && !notRole(notPassedRole)) {
         return <Navigate to="/home" replace />;
     }
 

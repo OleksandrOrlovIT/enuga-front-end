@@ -86,7 +86,7 @@ const AppContent = () => {
                     <Route path="/profile/edit" element={<ProfileForm/>}/>
                 </Route>
 
-                <Route element={<ProtectedRoute notRole="ROLE_USER_WITH_SUBSCRIPTION" />}>
+                <Route element={<ProtectedRoute notPassedRole="ROLE_USER_WITH_SUBSCRIPTION" />}>
                     <Route path="/upgrade-account" element={<UpgradeAccount />} />
                     <Route path="/books" element={<AllBookCards />} />
                     <Route path="/books/:id/page/:pageNumber" element={<ReadBookPage />} />
