@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import api from "../auth/api";
 import GradientCard from "../common/GradientCard";
 
@@ -9,21 +9,26 @@ function EnglishTestCard({ wordModule, userId, onDelete }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const request = {"userId": userId, "wordModuleId": wordModule.id};
+                const request = { userId: userId, wordModuleId: wordModule.id };
 
                 const bestResponse = await api.post('/word-module-attempts/user/stats-best', request);
+                console.log("BestResponse: ", bestResponse.data.successPercentage);
 
-                const formattedBestTryPercentage = bestResponse.data.successPercentage ?
-                    bestResponse.data.successPercentage.toFixed(2) : 0;
+                const formattedBestTryPercentage = bestResponse.data.successPercentage !== undefined
+                    ? bestResponse.data.successPercentage.toFixed(2)
+                    : 0;
 
                 setBestPercentage(formattedBestTryPercentage);
 
                 const lastResponse = await api.post('/word-module-attempts/user/stats-last', request);
 
-                const formattedLastTryPercentage = lastResponse.data.successPercentage ?
-                    lastResponse.data.successPercentage.toFixed(2) : formattedBestTryPercentage;
+                if (lastResponse.data.successPercentage !== undefined && lastResponse.data.successPercentage !== null) {
+                    const formattedLastTryPercentage = lastResponse.data.successPercentage.toFixed(2);
+                    setLastTryPercentage(formattedLastTryPercentage);
+                } else {
+                    setLastTryPercentage(0);
+                }
 
-                setLastTryPercentage(formattedLastTryPercentage);
             } catch (error) {
                 console.error('Error fetching best and last word module attempts:', error);
             }
@@ -48,8 +53,8 @@ function EnglishTestCard({ wordModule, userId, onDelete }) {
             heading={wordModule.moduleName}
             linkToGet={`/word-modules/${wordModule.id}`}
             deleteFunc={deleteCard}
-            lastTryPercentage={lastTryPercentage}
             bestPercentage={bestPercentage}
+            lastTryPercentage={lastTryPercentage}
         />
     );
 }
